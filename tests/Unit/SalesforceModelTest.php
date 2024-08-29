@@ -24,7 +24,7 @@ class SalesforceModelTest extends TestCase
     /**
      *
      */
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass():void
     {
         parent::setUpBeforeClass();
         $options = require(__DIR__.'/../../config/test.php');
@@ -93,8 +93,10 @@ class SalesforceModelTest extends TestCase
         $collection->Name = 'Bob';
         $names = $collection->Name;
         $list = $collection->toArray();
-        $this->assertContains('Bob', $names, 'Expected ability to set and retrieve the Name field on our collection.');
-        $this->assertArraySubset([['Name' => 'Bob']], $list, 'Expected ability to set and retrieve the Name field on our collection.');
+        // $this->assertContains('Bob', $names, 'Expected ability to set and retrieve the Name field on our collection.');
+        $this->assertContains('Bob', $collection, 'Expected ability to set and retrieve the Name field on our collection.');
+        // $this->assertArraySubset([['Name' => 'Bob']], $list, 'Expected ability to set and retrieve the Name field on our collection.');
+        $this->assertArrayIsIdenticalToArrayOnlyConsideringListOfKeys([['Name' => 'Bob']], $list, ['Name'] ,'Expected ability to set and retrieve the Name field on our collection.');
     }
 
     /**
@@ -115,7 +117,8 @@ class SalesforceModelTest extends TestCase
         $obj->Name = $name;
 
         $this->assertEquals($name, $obj->Name, 'Expected ability to set Name field on Model');
-        $this->assertArraySubset(['Name' => $name], $obj->toArray(), 'Expected change to show in toArray()');
+        // $this->assertArraySubset(['Name' => $name], $obj->toArray(), 'Expected change to show in toArray()');
+        $this->assertArrayIsIdenticalToArrayOnlyConsideringListOfKeys(['Name' => $name], $obj->toArray(), ['Name'] , 'Expected change to show in toArray()');
     }
 
     /**
