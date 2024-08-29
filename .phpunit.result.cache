@@ -1,0 +1,1 @@
+{"version":1,"defects":[],"times":{"Unit\\SalesforceConnectionTest::can_auth":0.36,"Unit\\SalesforceConnectionTest::can_see_resource_with_client":0.118,"Unit\\SalesforceConnectionTest::testCanAuth":0.277}}
